@@ -1,0 +1,63 @@
+{
+    "$schema": "https://json-schema.org/draft-04/schema",
+    "id": "http://example.com/example.json",
+    "title": "Root Schema",
+    "type": "object",
+    "required": [
+        "data",
+        "support"
+    ],
+    "properties": {
+        "data": {
+            "title": "The data Schema",
+            "type": "object",
+            "required": [
+                "id",
+                "name",
+                "year",
+                "color",
+                "pantone_value"
+            ],
+            "properties": {
+                "id": {
+                    "title": "The id Schema",
+                    "type": "integer"
+                },
+                "name": {
+                    "title": "The name Schema",
+                    "type": "string"
+                },
+                "year": {
+                    "title": "The year Schema",
+                    "type": "integer"
+                },
+                "color": {
+                    "title": "The color Schema",
+                    "type": "string"
+                },
+                "pantone_value": {
+                    "title": "The pantone_value Schema",
+                    "type": "string"
+                }
+            }
+        },
+        "support": {
+            "title": "The support Schema",
+            "type": "object",
+            "required": [
+                "url",
+                "text"
+            ],
+            "properties": {
+                "url": {
+                    "title": "The url Schema",
+                    "type": "string"
+                },
+                "text": {
+                    "title": "The text Schema",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
