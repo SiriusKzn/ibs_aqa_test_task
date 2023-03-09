@@ -1,13 +1,10 @@
+"""Модуль содержит методы для валидации"""
 import json
-import os
-
 import jsonschema
-import schemas
-import requests
-from requests import Response
 
 
 def validate_json_schema(json_data, schema) -> bool:
+    """Функция для валидации json схем"""
     try:
         jsonschema.validate(instance=json_data, schema=schema, )
         return True
@@ -16,9 +13,7 @@ def validate_json_schema(json_data, schema) -> bool:
 
 
 def get_json_schema(path):
-    with open(f'schemas/{path}') as file:
+    """Функция для получения schema из файла по пути path"""
+    with open(f'schemas/{path}', 'r', encoding='UTF-8') as file:
         json_schema = json.load(file)
         return json_schema
-
-
-

@@ -1,0 +1,30 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "title": "Root Schema",
+    "type": "object",
+    "required": [
+        "name",
+        "job",
+        "id",
+        "createdAt"
+    ],
+    "properties": {
+        "name": {
+            "title": "The name Schema",
+            "type": "string"
+        },
+        "job": {
+            "title": "The job Schema",
+            "type": "string"
+        },
+        "id": {
+            "title": "The id Schema",
+            "type": "string"
+        },
+        "createdAt": {
+            "title": "The createdAt Schema",
+            "type": "string"
+        }
+    }
+}

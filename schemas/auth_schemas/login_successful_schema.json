@@ -1,0 +1,15 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "title": "Root Schema",
+    "type": "object",
+    "required": [
+        "token"
+    ],
+    "properties": {
+        "token": {
+            "title": "The token Schema",
+            "type": "string"
+        }
+    }
+}
