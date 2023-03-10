@@ -3,7 +3,7 @@ import pytest
 
 from utils import custom_asserts
 import locators.home_page_locators as hpl
-from utils.custom_request import send_custom_request
+from api.custom_request import send_custom_request
 
 @allure.epic("UI")
 @allure.feature("CRUD")
@@ -14,7 +14,7 @@ class TestCRUD:
     @allure.story("Проверка создания пользователя")
     @allure.tag("Positive")
     def test_create_user(self, hp):
-        with allure.step(f"Нажатие на кнопку"):
+        with allure.step("Нажатие на кнопку"):
             hp.click_on_button(hpl.CREATE_USER_BTN)
         response = send_custom_request(method=hp.get_method(hpl.CREATE_USER_BTN),
                                        endpoint=hp.get_endpoint(),

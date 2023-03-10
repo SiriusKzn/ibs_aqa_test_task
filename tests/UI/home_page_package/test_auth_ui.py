@@ -2,7 +2,7 @@ import allure
 import pytest
 
 import locators.home_page_locators as hpl
-from utils.custom_request import send_custom_request
+from api.custom_request import send_custom_request
 
 
 @allure.epic("UI")
@@ -10,23 +10,14 @@ from utils.custom_request import send_custom_request
 @allure.suite("Авторизация пользователей")
 @pytest.mark.WEB
 class TestAuth:
-    @pytest.mark.parametrize('locator_btn, allure_data',
-                             ([hpl.LOGIN_BTN, {
-                                 'tag': 'Positive',
-                                 'title': 'Проверка кнопки логина пользователя'
-                             }],
-                              [hpl.LOGIN_NEG_BTN, {
-                                  'tag': 'Negative',
-                                  'title': 'Проверка кнопки логина пользователя (Негативный)'
-                              }
-                               ]))
-    def test_login(self, hp, locator_btn, allure_data: dict):
-        allure.dynamic.title(allure_data['title'])
-        allure.dynamic.tag(allure_data['tag'])
-        allure.dynamic.story(allure_data['title'])
+
+    @allure.story("Проверка логина пользователя")
+    @allure.title("Проверка кнопки логина пользователя")
+    @allure.tag("Positive")
+    def test_login(self, hp):
         with allure.step("Нажатие на кнопку"):
-            hp.click_on_button(locator_btn)
-        response = send_custom_request(method=hp.get_method(locator_btn),
+            hp.click_on_button(hpl.LOGIN_BTN)
+        response = send_custom_request(method=hp.get_method(hpl.LOGIN_BTN),
                                        endpoint=hp.get_endpoint(),
                                        data=hp.get_body())
         with allure.step("Проверка статус кода"):
@@ -34,18 +25,41 @@ class TestAuth:
         with allure.step("Сравнение ответа API и WEB"):
             assert response.json() == hp.get_text_response(), "Ответы не совпадают"
 
-    @pytest.mark.parametrize('locator_btn, allure_data',
-                             ([hpl.REGISTER_BTN, {'tag': 'Positive',
-                                                  'title': 'Проверка логина пользователя'}],
-                              [hpl.LOGIN_NEG_BTN, {'tag': 'Negative',
-                                                   'title': 'Проверка логина пользователя (Негативный)'}]))
-    def test_register(self, hp, locator_btn, allure_data: dict):
-        allure.dynamic.title(allure_data['title'])
-        allure.dynamic.tag(allure_data['tag'])
-        allure.dynamic.story(allure_data['title'])
+    @allure.story("Проверка логина пользователя")
+    @allure.title("Проверка кнопки логина пользователя (Негативной)")
+    @allure.tag("Negative")
+    def test_login_negative(self, hp):
         with allure.step("Нажатие на кнопку"):
-            hp.click_on_button(locator_btn)
-        response = send_custom_request(method=hp.get_method(locator_btn),
+            hp.click_on_button(hpl.LOGIN_NEG_BTN)
+        response = send_custom_request(method=hp.get_method(hpl.LOGIN_NEG_BTN),
+                                       endpoint=hp.get_endpoint(),
+                                       data=hp.get_body())
+        with allure.step("Проверка статус кода"):
+            assert response.status_code == int(hp.get_status_code()), "Различный статус код"
+        with allure.step("Сравнение ответа API и WEB"):
+            assert response.json() == hp.get_text_response(), "Ответы не совпадают"
+
+    @allure.story("Проверка регистрации пользователя")
+    @allure.title("Проверка кнопки регистрации пользователя")
+    @allure.tag("Positive")
+    def test_register(self, hp):
+        with allure.step("Нажатие на кнопку"):
+            hp.click_on_button(hpl.REGISTER_BTN)
+        response = send_custom_request(method=hp.get_method(hpl.REGISTER_BTN),
+                                       endpoint=hp.get_endpoint(),
+                                       data=hp.get_body())
+        with allure.step("Проверка статус кода"):
+            assert response.status_code == int(hp.get_status_code()), "Различный статус код"
+        with allure.step("Сравнение ответа API и WEB"):
+            assert response.json() == hp.get_text_response(), "Ответы не совпадают"
+
+    @allure.story("Проверка регистрации пользователя")
+    @allure.title("Проверка кнопки регистрации пользователя (Негативной)")
+    @allure.tag("Negative")
+    def test_register_negative(self, hp):
+        with allure.step("Нажатие на кнопку"):
+            hp.click_on_button(hpl.REGISTER_NEG_BTN)
+        response = send_custom_request(method=hp.get_method(hpl.REGISTER_NEG_BTN),
                                        endpoint=hp.get_endpoint(),
                                        data=hp.get_body())
         with allure.step("Проверка статус кода"):

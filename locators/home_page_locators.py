@@ -17,7 +17,7 @@ REGISTER_BTN = (By.CSS_SELECTOR, "li[data-id='register-successful']")
 REGISTER_NEG_BTN = (By.CSS_SELECTOR, "li[data-id='register-unsuccessful']")
 LOGIN_BTN = (By.CSS_SELECTOR, "li[data-id='login-successful']")
 LOGIN_NEG_BTN = (By.CSS_SELECTOR, "li[data-id='login-unsuccessful']")
-DELAYED_RESPONSE = (By.CSS_SELECTOR, "li[data-id='delay']")
+DELAYED_RESPONSE_BTN = (By.CSS_SELECTOR, "li[data-id='delay']")
 
 OUTPUT_RESPONSE_FIELD = (By.CSS_SELECTOR, "pre[data-key='output-response']")
 OUTPUT_REQUEST_FIELD = (By.CSS_SELECTOR, "pre[data-key='output-request']")

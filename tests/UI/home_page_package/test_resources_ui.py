@@ -4,7 +4,7 @@ import allure
 import pytest
 
 import locators.home_page_locators as hpl
-from utils.custom_request import send_custom_request
+from api.custom_request import send_custom_request
 
 
 @allure.epic("UI")
@@ -14,7 +14,7 @@ from utils.custom_request import send_custom_request
 class TestResource:
     @allure.tag("Positive")
     @allure.title("Проверка кнопки получения листа ресурсов")
-    @allure.story("Проверка кнопки получения листа ресурсов")
+    @allure.story("Проверка получения листа ресурсов")
     def test_list_resources(self, hp):
         with allure.step(f"Нажатие на кнопку"):
             hp.click_on_button(hpl.UNKNOWN_BTN)
@@ -27,7 +27,7 @@ class TestResource:
 
     @allure.tag("Positive")
     @allure.title("Проверка кнопки получения ресурса")
-    @allure.story("Проверка кнопки получения ресурса")
+    @allure.story("Проверка получения ресурса")
     def test_get_resource_btn(self, hp):
         with allure.step(f"Нажатие на кнопку"):
             hp.click_on_button(hpl.SINGLE_UNKNOWN_BTN)
@@ -40,8 +40,8 @@ class TestResource:
 
     @allure.tag("Negative")
     @allure.title("Проверка кнопки получения ресурса (Негативной)")
-    @allure.story("Проверка кнопки получения ресурса (Негативной)")
-    def test_get_resource_btn(self, hp):
+    @allure.story("Проверка получения ресурса")
+    def test_get_resource_negative_btn(self, hp):
         with allure.step(f"Нажатие на кнопку"):
             hp.click_on_button(hpl.SINGLE_UNKNOWN_NEG_BTN)
         response = send_custom_request(method=hp.get_method(hpl.SINGLE_UNKNOWN_NEG_BTN),
