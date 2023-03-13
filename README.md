@@ -1,4 +1,4 @@
-# ibs_aqa_test_task
+# aqa_test_task
 Для запуска проекта необходимо установить зависимости 
 
 pip install -r requirements.txt
